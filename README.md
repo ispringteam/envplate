@@ -28,25 +28,25 @@ Trivial templating for configuration files using environment keys. References to
 1. `${key}` or
 * `${key:-default value}`
 
-Envplate (`ep`) parses arbitrary configuration files (using glob patterns) and replaces all references with values from the environment or with default values (if given). These values replace the keys *inline* (= the files will be changed).
+Envplate (`envplate`) parses arbitrary configuration files (using glob patterns) and replaces all references with values from the environment or with default values (if given). These values replace the keys *inline* (= the files will be changed).
 
 Failure to resolve the supplied glob pattern(s) to at least one file results in an error.
 
-Optionally, `ep` can:
+Optionally, `envplate` can:
 
 * backup (`-b` flag): create backups of the files it changes, appending a `.bak` extension to backup copies
 * dry-run (`-d` flag): output to stdout instead of replacing values inline
 * strict (`-s` flag): refuse to fallback to default values
 * verbose (`-v` flag): be verbose about it's operations
 
-`ep` can also `exec()` another command by passing
+`envplate` can also `exec()` another command by passing
 
-* `--` after all arguments to `ep`
+* `--` after all arguments to `envplate`
 * the path to the binary and it's arguments
 
-Example: `/usr/local/bin/ep -v *.conf -- /usr/sbin/nginx -c /etc/nginx.conf`
+Example: `envplate -v *.conf -- /usr/sbin/nginx -c /etc/nginx.conf`
 
-This can be used to use `ep` to parse configs and execute the container process using Dockers `CMD`
+This can be used to use `envplate` to parse configs and execute the container process using Dockers `CMD`
 
 ## Escaping
 
