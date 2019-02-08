@@ -2,6 +2,27 @@
 
 [![Build Status](https://travis-ci.org/kreuzwerker/envplate.svg)](https://travis-ci.org/kreuzwerker/envplate)
 
+## Installation
+
+You can install locally:
+
+```bash
+go get -u github.com/ispringteam/envplate/cmd/envplate
+```
+
+Or package to docker container with `docker build --tag envplate .` command and the following Dockerfile:
+
+```Dockerfile
+FROM golang:alpine AS builder
+RUN apk add --update git && \
+    go get -u github.com/ispringteam/envplate/cmd/envplate
+
+FROM alpine:latest
+COPY --from=builder /go/bin/envplate /usr/bin/envplate
+```
+
+## Usage
+
 Trivial templating for configuration files using environment keys. References to such keys are declared in arbitrary config files either as:
 
 1. `${key}` or
