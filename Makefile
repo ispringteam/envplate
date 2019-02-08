@@ -1,13 +1,13 @@
 VERSION := "1.0.0-RC1"
 REPO := envplate
-USER := kreuzwerker
+USER := ispringteam
 TOKEN = `cat .token`
 FLAGS := "-X=main.build=`git rev-parse --short HEAD` -X=main.version=$(VERSION)"
 
 .PHONY: build clean release retract
 
 build:
-	cd bin && mkdir -p build  && gox -osarch="linux/amd64 linux/arm darwin/amd64" -ldflags $(FLAGS) -output "../build/{{.OS}}-{{.Arch}}/ep";
+	cd cmd/envplate && mkdir -p build  && gox -osarch="linux/amd64 linux/arm darwin/amd64" -ldflags $(FLAGS) -output "../build/{{.OS}}-{{.Arch}}/ep";
 
 clean:
 	rm -rf build
